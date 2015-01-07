@@ -1,0 +1,17 @@
+*.xml
+*.db
+*.pyc
+*.doc
+*.docx
+*.txt~
+*.py~
+*.html~
+*.log
+/media/cms_page_media/
+/media/uploadfiles/
+/filer_public/
+/filer_public_thumbnails/
+/media
+/cmsplugin_filer_folder
+/tools/sqlitebrowser
+

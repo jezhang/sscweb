@@ -1,0 +1,21 @@
+{% load cms_tags sekizai_tags %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="data-spm" content="1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+{% block head_quote %}{% endblock %}
+<title>{% placeholder "TITLE" %}{% block title %}{% endblock %}</title>
+{% render_block "css" %}
+<!--自定义CSS&Javascript代码片段begin-->
+{% placeholder "CUSTOM_CSS_JS" %}
+{% block custom_css_js %}{% endblock %}
+<!--自定义CSS&Javascript代码片段end-->
+</head>
+<body>
+{% placeholder "BASE_CONTENT" %}
+{% block base_content %}{% endblock %}
+{% render_block "js" %}
+</body>
+</html>
