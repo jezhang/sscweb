@@ -9,11 +9,15 @@ from uuid import uuid4
 
 
 DEPARTMENTS = (
-	('0',u'eBusiness'),
-	('1',u'PMO'),
-	('2',u'HR'),
-	('3',u'IT'),
-	('4',u'Finance'),
+	('1',u'eBusiness'),	
+	('2',u'PMO'),
+	('3',u'HR'),
+	('4',u'Infra'),
+	('5',u'Finance'),
+	('6',u'BI'),
+	('7',u'C&BI'),
+	('8',u'Transportation'),
+	('9',u'DBA'),
 )
 
 class Show(models.Model):
@@ -32,13 +36,18 @@ class Show(models.Model):
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.uid = uuid4().hex
-		return super(Show, self).save(*args, **kwargs)		
+		return super(Show, self).save(*args, **kwargs)
+
+	def get_votes_count(self):
+		return self.votes_set.filter(show=self).count()
+	# get_votes_count.admin_order_field = 
+	get_votes_count.short_description = '票数统计'
 
 class Votes(models.Model):
 	datetime_voted = models.DateTimeField(auto_now_add=True,verbose_name='投票时间')
 	name = models.CharField(max_length=50,blank=True,null=True,verbose_name='姓名')
 	department = models.CharField(max_length=2,blank=True,null=True,verbose_name='部门',choices=DEPARTMENTS)
-	email = models.EmailField(max_length=50,blank=True,null=True,verbose_name='电子邮件')
+	# email = models.EmailField(max_length=50,blank=True,null=True,verbose_name='电子邮件')
 	show = models.ForeignKey(Show,blank=True,null=True,verbose_name='节目名称')
 
 	class Meta:
